@@ -33,6 +33,11 @@ class QuestionSerializer(ModelSerializer):
                     c.choice_text = choice.get('choice_text', c.choice_text)
                     c.save()
                     keep_choices.append(c.id)
+                else:
+                    continue
+            else:
+                c = Choice.objects.create(question=instance, **choice)
+                keep_choices.append(c.id)
         for choice in instance.choices.all():
             if choice.id not in keep_choices:
                 choice.delete()
