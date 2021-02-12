@@ -1,7 +1,6 @@
 from rest_framework.serializers import ModelSerializer, CurrentUserDefault, HiddenField
 from backend.core.models import Choice, Question
 
-
 from .choice import ChoiceSerializer
 
 
@@ -35,6 +34,7 @@ class QuestionSerializer(ModelSerializer):
                     c.save()
                     keep_choices.append(c.id)
         for choice in instance.choices.all():
-            choice.delete()
+            if choice.id not in keep_choices:
+                choice.delete()
 
         return instance
