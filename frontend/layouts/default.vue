@@ -24,7 +24,8 @@
         <ul class="menu-list">
           <li v-for="(item, key) of globalItems" :key="key">
             <nuxt-link :to="item.to" exact-active-class="is-active">
-              <b-icon :icon="item.icon" /> {{ item.title }}
+              <b-icon :icon="item.icon" />
+              {{ item.title }}
             </nuxt-link>
           </li>
           <span v-if="loggedIn">
@@ -62,6 +63,11 @@ export default {
           title: 'Logout',
           icon: 'logout',
           to: { name: 'logout' },
+        },
+        {
+          title: 'Questions',
+          icon: 'cogs',
+          to: { name: 'admin-question' },
         },
       ],
     }
